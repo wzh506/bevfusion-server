@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "bevfusion",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/tools/train.py",
+            "args": [
+                "configs/nuscenes/det/transfusion/secfpn/camera+lidar/swint_v0p075/convfuser.yaml",
+                "--model.encoders.camera.backbone.init_cfg.checkpoint",
+                "pretrained/swint-nuimages-pretrained.pth",
+                "--load_from",
+                "pretrained/lidar-only-det.pth"
+     //           "--work-dir=work_dirs/sparse4d_r101_H1"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                //"CUDA_VISIBLE_DEVICES": "", // 没有显卡可用时就这么设置
+                "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}"
+            }
+        }
+    ]
+}

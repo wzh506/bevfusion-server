@@ -1,0 +1,11 @@
+1.训练基于fusion的detection model
+torchpack dist-run -np 4 python tools/train.py configs/nuscenes/det/transfusion/secfpn/camera+lidar/swint_v0p075/convfuser.yaml --model.encoders.camera.backbone.init_cfg.checkpoint pretrained/swint-nuimages-pretrained.pth --load_from pretrained/lidar-only-det.pth 
+2.训练基于fusion的segmentaion model
+torchpack dist-run -np 8 python tools/train.py configs/nuscenes/seg/fusion-bev256d2-lss.yaml --model.encoders.camera.backbone.init_cfg.checkpoint pretrained/swint-nuimages-pretrained.pth
+
+3.报错信息
+https://blog.csdn.net/weixin_54678439/article/details/135061364
+pip install flash-attn==0.2.0
+服务器上torchpack.init会报错,暂时将代码设置为单线程运行
+configs文件夹最后多了一个空格也会报错（无语）
+
